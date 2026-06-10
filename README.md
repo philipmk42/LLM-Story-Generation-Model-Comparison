@@ -1,112 +1,61 @@
-# 📝 Comparative Story Generation using Transformer Models
+# LLM Story Generation Model Comparison
 
-This Streamlit-based app allows users to compare the story generation capabilities of three popular transformer models:
+An interactive comparison of different transformer architectures for story generation using GPT-2, DistilGPT-2, and FLAN-T5.
 
-- **GPT-2** – A decoder-only model by OpenAI.
-- **FLAN-T5 Base** – A fine-tuned encoder-decoder model by Google.
-- **DistilGPT-2** – A smaller, faster, and lighter GPT-2 variant.
+## Overview
 
----
+This project builds a Streamlit application to compare the story generation capabilities of three transformer-based language models:
 
-## 🚀 Features
+- **GPT-2** — Decoder-only autoregressive model
+- **DistilGPT-2** — Distilled, smaller version of GPT-2
+- **FLAN-T5** — Instruction-tuned encoder-decoder model
 
-- Prompt-based story generation.
-- Comparison of output across three different transformer models.
-- Evaluation using automatic metrics (BLEU, ROUGE-L).
-- Manual rating on fluency, coherence, and creativity.
-- Visualizations using bar charts.
+Users can input prompts, adjust generation parameters, and evaluate outputs using both automatic metrics and human judgment.
 
----
+## Features
 
-## 🛠️ Installation
+- Interactive prompt input with sample prompts
+- Adjustable generation parameters (max length, temperature, top-p)
+- Side-by-side story generation from multiple models
+- Automatic evaluation using **BLEU** and **ROUGE-L**
+- Human evaluation sliders (Fluency, Coherence, Creativity)
+- Comparative bar charts and metric tables
 
-### Clone the Repository
+## Tech Stack
 
+- **Python**
+- **Hugging Face Transformers**
+- **PyTorch**
+- **Streamlit**
+- **Evaluate** library (BLEU & ROUGE)
+- **NLTK, Pandas, Matplotlib**
 
-git clone https://github.com/your-username/story-gen-comparator.git
-cd story-gen-comparator
-Install Required Dependencies
-Install with pip:
+## How It Works
 
-bash
-Copy
-Edit
+1. User provides a story prompt.
+2. The prompt is formatted differently based on model type (causal vs seq2seq).
+3. Each model generates a continuation/story.
+4. Generated text is evaluated against a reference using BLEU and ROUGE-L.
+5. Users rate the outputs on fluency, coherence, and creativity.
+6. Results are visualized for easy model comparison.
+
+## Key Learnings
+
+- Different transformer architectures (decoder-only vs encoder-decoder) behave differently in open-ended generation tasks.
+- Decoding parameters (temperature, top-p) significantly affect output quality and diversity.
+- Automatic metrics like BLEU and ROUGE have limitations when evaluating creative text generation.
+- Human evaluation remains essential for assessing qualities like creativity and coherence.
+
+## Limitations
+
+- Uses a static placeholder reference for automatic metrics.
+- Human evaluation is collected via sliders but not persisted across sessions.
+- No fine-tuning was performed — only inference and comparison.
+
+## Installation & Usage
+
+```bash
+git clone https://github.com/philipmk42/LLM-Story-Generation-Model-Comparison.git
+cd LLM-Story-Generation-Model-Comparison
 pip install -r requirements.txt
-Or manually install:
-
-bash
-Copy
-Edit
-pip install streamlit torch transformers evaluate nltk pandas seaborn matplotlib
-🔐 Hugging Face Authentication
-Some models may require authentication to download. You can authenticate using:
-
-bash
-Copy
-Edit
-huggingface-cli login
-Or set your token:
-
-bash
-Copy
-Edit
-export HUGGINGFACE_TOKEN=your_token_here
-On Windows (CMD):
-
-cmd
-Copy
-Edit
-set HUGGINGFACE_TOKEN=your_token_here
-▶️ Run the App
-bash
-Copy
-Edit
-streamlit run lab2.py
-Then open your browser to http://localhost:8501
-
-📌 Example Prompts
-"A lone astronaut discovers a hidden planet."
-
-"A child finds an ancient map in their attic."
-
-"Two strangers meet on a train and realize their destinies are linked."
-
-📊 Evaluation Metrics
-Metric	Description
-BLEU	Compares n-gram overlap with reference text.
-ROUGE-L	Measures longest common subsequence.
-Human	Manual scoring on fluency, coherence, creativity.
-
-📂 Project Structure
-bash
-Copy
-Edit
-├── lab2.py              # Main Streamlit application
-├── README.md            # Project documentation
-├── requirements.txt     # Python dependency file
-└── screenshots/         # (Optional) Screenshots of UI
-📃 License
-This project is licensed under the MIT License.
-Feel free to fork, improve, and share.
-
-🙏 Acknowledgements
-Hugging Face Transformers
-
-Streamlit
-
-Hugging Face Evaluate
-
-⭐ If you like this project, please consider giving it a star!
-
-yaml
-Copy
-Edit
-
-
-
-
-
-
-
-
-
+streamlit run app.py
